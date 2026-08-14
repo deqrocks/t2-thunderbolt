@@ -13,7 +13,6 @@
 #include <linux/slab.h>
 #include <linux/errno.h>
 #include <linux/pci.h>
-#include <linux/dmi.h>
 #include <linux/dma-mapping.h>
 #include <linux/interrupt.h>
 #include <linux/iommu.h>
@@ -1186,13 +1185,6 @@ static void nhi_check_quirks(struct tb_nhi *nhi)
 			 * packets when RING_FLAG_E2E is set.
 			 */
 			nhi->quirks |= QUIRK_E2E;
-			break;
-		case PCI_DEVICE_ID_INTEL_TITAN_RIDGE_4C_NHI:
-			if (dmi_match(DMI_PRODUCT_NAME, "MacBookPro15,1")) {
-				nhi->quirks |= QUIRK_FORCE_RTD3;
-				pci_info(nhi->pdev,
-					 "enabling RTD3 for Apple T2 Titan Ridge NHI\n");
-			}
 			break;
 		}
 	}

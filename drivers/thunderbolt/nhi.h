@@ -50,9 +50,6 @@ struct tb_nhi_ops {
 
 extern const struct tb_nhi_ops icl_nhi_ops;
 
-/* Host interface quirks shared with the connection manager. */
-#define QUIRK_FORCE_RTD3	BIT(2)
-
 /*
  * PCI IDs used in this driver from Win Ridge forward. There is no
  * need for the PCI quirk anymore as we will use ICM also on Apple

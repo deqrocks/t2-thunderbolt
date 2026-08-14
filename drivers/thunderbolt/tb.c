@@ -3003,9 +3003,8 @@ static int tb_start(struct tb *tb, bool reset)
 	 * implement the necessary router operations.
 	 */
 	tb->root_switch->no_nvm_upgrade = !tb_switch_is_usb4(tb->root_switch);
-	/* USB4 routers and quirked NHIs support runtime PM */
-	tb->root_switch->rpm = tb_switch_is_usb4(tb->root_switch) ||
-			       (tb->nhi->quirks & QUIRK_FORCE_RTD3);
+	/* All USB4 routers support runtime PM */
+	tb->root_switch->rpm = tb_switch_is_usb4(tb->root_switch);
 
 	ret = tb_switch_configure(tb->root_switch);
 	if (ret) {
